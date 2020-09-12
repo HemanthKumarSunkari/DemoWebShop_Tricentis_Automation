@@ -27,7 +27,22 @@ public class ShoppingCartPage extends TestBase {
 	
 	@FindBy(xpath = "//*[@class='order-summary-content']")
 	WebElement orderContentMsg;
-
+	
+	@FindBy(xpath = "//span[@class='product-price']")
+	List<WebElement> productPrices;
+	
+	@FindBy(xpath = "//span[@class='product-unit-price']")
+	WebElement unitPrice;
+	
+	@FindBy(className = "qty-input")
+	WebElement units;
+	
+	@FindBy(xpath = "//input[@id='termsofservice']")
+	WebElement termsCheck;
+	
+	@FindBy(xpath = "//button[@id='checkout']")
+	WebElement checkOutBtn;
+	
 	public void removeCartItems() {
 
 		TestUtil.Wait(updateShoppingCartLink);
@@ -50,6 +65,20 @@ public class ShoppingCartPage extends TestBase {
 
 	}
 
+	public void validateSubTotalPrice() {
+		int subtotalPrice = Integer.parseInt(productPrices.get(0).getText());
+		int up = Integer.parseInt(unitPrice.getText());
+		int qty = Integer.parseInt(units.getText());
+		int expsub = up*qty;
+		Assert.assertEquals(subtotalPrice,expsub);
+	}
+	
+	public void checkOut() {
+		validateSubTotalPrice();
+		termsCheck.click();
+		checkOutBtn.click();
+	}
 
+	
 
 }

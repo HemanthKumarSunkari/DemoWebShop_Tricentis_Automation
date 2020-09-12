@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.demoWebShop.base.TestBase;
+import com.demoWebShop.utilities.TestUtil;
 
 public class MainPage extends TestBase {
 
@@ -14,6 +15,9 @@ public class MainPage extends TestBase {
 
 	@FindBy(xpath = "//a[@class='ico-login']")
 	WebElement loginLink;
+	
+	@FindBy(xpath = "//a[@class='ico-logout']")
+	WebElement logoutLink;
 
 	@FindBy(xpath = "//div[@class='header-logo']//a//img")
 	WebElement titleImg;
@@ -56,6 +60,11 @@ public class MainPage extends TestBase {
 	public void selectBooksfromCategories() {
 		bookLink.click();
 
+	}
+	
+	public void logout() {
+		TestUtil.Wait(logoutLink);
+		logoutLink.click();
 	}
 
 }
