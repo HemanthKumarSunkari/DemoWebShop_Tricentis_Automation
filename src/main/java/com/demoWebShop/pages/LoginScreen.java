@@ -34,7 +34,7 @@ public class LoginScreen extends TestBase {
 	
 	public void enterLoginCred() {
 		
-		email.sendKeys(prop.getProperty("email"));
+		email.sendKeys(prop.getProperty("uname"));
 		pass.sendKeys(prop.getProperty("pass"));
 		
 		loginBtn.click();

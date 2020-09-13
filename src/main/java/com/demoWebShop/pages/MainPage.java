@@ -45,7 +45,7 @@ public class MainPage extends TestBase {
 	}
 
 	public void verifyShoppingCartItems() {
-		int val = Integer.parseInt(cartItems.getText());
+		int val = Integer.parseInt(cartItems.getText().replaceAll("\\p{P}",""));
 
 		if (val != 0) {
 			System.out.println("Items are already added in the cart. Trying to remove the items");

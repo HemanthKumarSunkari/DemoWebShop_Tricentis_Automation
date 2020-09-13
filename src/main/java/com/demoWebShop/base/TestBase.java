@@ -25,6 +25,9 @@ public class TestBase {
 	public static EventFiringWebDriver e_driver;
 	public static WebEventListener eventListener;
 
+	/*
+	 * constructor that intialises confiq.properties file
+	 */
 	public TestBase() {
 		try {
 			prop = new Properties();
@@ -39,10 +42,15 @@ public class TestBase {
 		}
 	}
 
+	/*
+	 * setups a browser using param from properties file and also intialises the
+	 * eventListener before every test case
+	 */
+
 	@BeforeMethod
 	public static void setUp() {
 
-		browser.initialization();
+		browser.initialization(prop.getProperty("browser"));
 
 		js = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
@@ -58,6 +66,9 @@ public class TestBase {
 
 	}
 
+	/*
+	 * quits and closes the browser after every test case
+	 */
 	@AfterMethod
 	public static void tearDown() {
 		if (driver != null) {
